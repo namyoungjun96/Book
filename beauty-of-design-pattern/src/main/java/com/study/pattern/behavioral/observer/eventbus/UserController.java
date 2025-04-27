@@ -1,8 +1,11 @@
 package com.study.pattern.behavioral.observer.eventbus;
 
+import com.google.common.eventbus.AsyncEventBus;
+import com.google.common.eventbus.EventBus;
 import com.study.pattern.behavioral.observer.UserService;
 
 import java.util.List;
+import java.util.concurrent.Executors;
 
 public class UserController {
     private UserService userService;
@@ -12,7 +15,7 @@ public class UserController {
     public UserController() {
         // eventBus = new EventBus();       // 동기식 차단 옵저버 패턴
         eventBus = new AsyncEventBus
-                (Executors.nexFixedThreadPool(DEFAULT_EVENTBUS_THREAD_POOL_SIZE));
+                (Executors.newFixedThreadPool(DEFAULT_EVENTBUS_THREAD_POOL_SIZE));
         // 비동기식 비차단 옵저버 패턴
     }
 
